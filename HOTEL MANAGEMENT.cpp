@@ -54,6 +54,7 @@ void Hotel::Signup(Hotel &h) {
 
 void Hotel::Login(Hotel& h1)
 		{
+			
 			cout<<"     * * * * * * * * * *     "<<endl;
 			cout<<"     *                 *     "<<endl;
 			cout<<"     *      LOGIN      *     "<<endl;
