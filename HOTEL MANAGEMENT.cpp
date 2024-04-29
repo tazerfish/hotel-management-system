@@ -17,11 +17,17 @@ class Hotel{
 		}
 		 void Signup(Hotel& h1);
 		 void Login(Hotel& h1);
+       enum Meal{
+			No_Meal=1,
+			Breakfast,
+			Lunch,
+			Dinner
+};
 
 		void pMeal()
 		{
 
-				cout<<"     * * * * * * * * * * * * * *     "<<endl;
+			cout<<"     * * * * * * * * * * * * * *     "<<endl;
 		        cout<<"     *          MEALS          *     "<<endl;
 		        cout<<"     * * * * * * * * * * * * * *     "<<endl<<endl;
 		 
@@ -308,6 +314,64 @@ class Hotel{
 		
 		
 };
+void Gymnasium()
+		{
+			int n;		
+			cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl;
+	        cout<<"     *     1. BADMINTON        *       *      2. SWIMMING        *      "<<endl;
+	        cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl<<endl;
+		        
+		    cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl;
+	        cout<<"     *       3. GYM            *       *      4. BASKETBALL      *      "<<endl;
+	        cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl<<endl;
+	
+			cout<<"WHICH SPORTS WOULD YOU LIKE TO ADD UP: ";
+			cin>>n;
+			cout<<"---------------------------------------------------"<<endl;
+			cout<<endl;
+			do{
+			switch(n)
+			{
+				    case 1:
+					cout<<"YOUR SELECTED SPORT IS BADMINTON. THANKYOU!"<<endl;
+					cout<<"---------------------------------------------------"<<endl;
+					break;
+					
+					case 2:
+					cout<<"YOUR SELECTED SPORT IS SWIMMING. THANKYOU!"<<endl;
+					cout<<"---------------------------------------------------"<<endl;
+					break;
+					
+					case 3:
+					cout<<"YOUR SELECTED SPORT IS GYM. THANKYOU!"<<endl;
+					cout<<"---------------------------------------------------"<<endl;
+					break;
+					
+					case 4:
+					cout<<"YOUR SELECTED SPORT IS BASKETBALL. THANKYOU!"<<endl;
+					cout<<"---------------------------------------------------"<<endl;
+					break;
+					
+					default:
+					cout<<"INVALID SELECTION. PLEASE TRY AGAIN!";	
+			}
+		}while(n>4);
+	
+	cout<<"Want to Exit or want to go to Main: "<<endl<<endl;
+	cout<<"1. Main"<<endl;
+	cout<<"2. Exit"<<endl;
+	cin>>a; 
+	
+	if(a==1)
+	{
+		PRINT();
+	}
+	else
+	{
+		cout<<"EXITING THE APP, THANKYOU!";
+	} 
+			
+	}
 
 void Hotel::Signup(Hotel &h) {
     cout << "     * * * * * * * * * *     " << endl;
