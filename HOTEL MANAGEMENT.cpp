@@ -17,6 +17,126 @@ class Hotel{
 		}
 		 void Signup(Hotel& h1);
 		 void Login(Hotel& h1);
+struct Room {
+    int roomNumber;
+    bool isReserved;
+    string guestName;
+};
+
+// Function to reserve a room
+void reserveRoom(Room rooms[], int totalRooms) {
+    int roomNumber;
+    cout<<"---------------------------------------------------"<<endl;
+    cout << "Enter the room number you want to reserve(1-20): ";
+    cin >> roomNumber;
+    cout<<"---------------------------------------------------"<<endl;
+
+    if (roomNumber < 1 || roomNumber > totalRooms) {
+        cout << "Invalid room number!" << endl;
+        return;
+    }
+
+    if (rooms[roomNumber - 1].isReserved) {
+        cout << "Room " << roomNumber << " is already reserved." << endl;
+        cout<<"---------------------------------------------------"<<endl;
+    } else {
+        cout << "Enter guest name: ";
+        cin >> rooms[roomNumber - 1].guestName;
+        cout<<"---------------------------------------------------"<<endl;
+        rooms[roomNumber - 1].isReserved = true;
+        cout << "Room " << roomNumber << " has been reserved for " << rooms[roomNumber - 1].guestName << endl;
+        cout<<"---------------------------------------------------"<<endl;
+    }
+}
+
+// Function to cancel reservation
+void cancelReservation(Room rooms[], int totalRooms) {
+    int roomNumber;
+    cout<<"---------------------------------------------------"<<endl;
+    cout << "Enter the room number you want to cancel reservation for: ";
+    cin >> roomNumber;
+    cout<<endl;
+    cout<<"---------------------------------------------------"<<endl;
+
+    if (roomNumber < 1 || roomNumber > totalRooms) {
+        cout << "Invalid room number!" << endl;
+        return;
+    }
+
+    if (rooms[roomNumber - 1].isReserved) {
+        cout << "Reservation for room " << roomNumber << " has been canceled." << endl;
+        cout<<"---------------------------------------------------"<<endl;
+        rooms[roomNumber - 1].isReserved = false;
+        rooms[roomNumber - 1].guestName = "";
+    } else {
+        cout << "Room " << roomNumber << " is not reserved." << endl;
+        cout<<"---------------------------------------------------"<<endl;
+    }
+}
+
+// Function to display all rooms
+void displayRooms(Room rooms[], int totalRooms) {
+    cout << "Room          Status          Guest" << endl;
+    for (int i = 0; i < totalRooms; ++i) {
+        cout << i + 1 << "            "<< (rooms[i].isReserved ? "Reserved" : "Available") << "       " << rooms[i].guestName << endl;
+    }
+}
+
+// Function to handle the entire reservation system
+void hotelReservation() {
+    const int totalRooms = 20; // Total number of rooms in the hotel
+    Room rooms[totalRooms]; // Array to store room information
+
+    // Initialize rooms
+    for (int i = 0; i < totalRooms; ++i) {
+        rooms[i].roomNumber = i + 1;
+        rooms[i].isReserved = false;
+        rooms[i].guestName = "";
+    }
+
+    int choice;
+    do {
+        cout << "1. Reserve a room" << endl;
+        cout << "2. Cancel reservation" << endl;
+        cout << "3. Display all rooms" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                reserveRoom(rooms, totalRooms);
+                break;
+            case 2:
+                cancelReservation(rooms, totalRooms);
+                break;
+            case 3:
+                displayRooms(rooms, totalRooms);
+                break;
+            case 4:
+                cout << "Exiting program. Thank you!" << endl;
+                
+                break;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    } while (choice != 4);
+     cout<<"---------------------------------------------------"<<endl;
+    cout<<"Want to Exit or want to go to Main: "<<endl<<endl;
+	cout<<"1. Main"<<endl;
+	cout<<"2. Exit"<<endl;
+	cin>>a; 
+	
+	if(a==1)
+	{
+		PRINT();
+	}
+	else
+	{
+		cout<<"---------------------------------------------------"<<endl;
+		cout<<"EXITING THE APP, THANKYOU!";
+	} 
+}
        enum Meal{
 			No_Meal=1,
 			Breakfast,
