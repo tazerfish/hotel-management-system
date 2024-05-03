@@ -1,10 +1,110 @@
 #include<iostream>
+#include<string>
+#include<cstdlib>
 using namespace std;
+
+class Entertainment {
+protected:
+    string name;
+public:
+    Entertainment() {}
+    Entertainment(string n) : name(n) {}
+    virtual void display() = 0;
+};
+class Movie : public Entertainment {
+private:
+    string genre;
+    int duration; // in minutes
+public:
+    Movie() {}
+    Movie(string n, string g, int d) : Entertainment(n), genre(g), duration(d) {}
+    void display() //override 
+	{
+		cout<<"---------------------------------------------------"<<endl;
+        cout<<"Movie: "<<name<<endl;
+        cout<<"---------------------------------------------------"<<endl;
+		cout<<"Genre: "<<genre<<endl;
+		cout<<"---------------------------------------------------"<<endl;
+		cout<<"Duration: "<<duration<<" minutes"<<endl;
+		cout<<"---------------------------------------------------"<<endl;
+    }
+    void inputDetails() {
+        cout<<"Enter movie name: ";
+        cin>>name;
+        cout<<"Enter genre: ";
+        cin>>genre;
+        cout<<"Enter duration (in minutes): ";
+        cin>>duration;
+    }
+};class VideoGame : public Entertainment {
+private:
+    string platform;
+public:
+    VideoGame() {}
+    VideoGame(string n, string p) : Entertainment(n), platform(p) {}
+    void display() // override
+	{
+		cout<<"---------------------------------------------------"<<endl;
+        cout<<"Video Game: "<<name<<endl;
+        cout<<"---------------------------------------------------"<<endl;
+		cout<<"Platform: "<<platform<<endl;
+		cout<<"---------------------------------------------------"<<endl;
+    }
+    void inputDetails() {
+        cout<<"Enter video game name: ";
+        cin>>name;
+        cout<<"Enter platform: ";
+        cin>>platform;
+    }
+};
+
+class GoKarting : public Entertainment {
+private:
+    int duration; // in minutes
+public:
+    GoKarting() {}
+    GoKarting(string n, int d) : Entertainment(n), duration(d) {}
+    void display() //override 
+	{
+        cout << "Go Karting Session: "<<name<<endl;
+        cout<<"---------------------------------------------------"<<endl;
+		cout<<"Duration: " << duration<<" minutes"<<endl;
+		cout<<"---------------------------------------------------"<<endl;
+    }
+    void inputDetails() {
+        cout<<"Enter go karting session name: ";
+        cin>>name;
+        cout<<"Enter duration (in minutes): ";
+        cin>>duration;
+    }
+};
+
+class PaintBall : public Entertainment {
+private:
+    int numPlayers;
+public:
+    PaintBall() {}
+    PaintBall(string n, int players) : Entertainment(n), numPlayers(players) {}
+    void display() //override 
+	{
+        cout<<"Paintball Session: "<<name<<endl;
+        cout<<"---------------------------------------------------"<<endl;
+		cout<<"Number of Players: "<<numPlayers<<endl;
+		cout<<"---------------------------------------------------"<<endl;
+    }
+    void inputDetails() {
+        cout<<"Enter paintball session name: ";
+        cin>>name;
+        cout<<"Enter number of players: ";
+        cin>>numPlayers;
+    }
+};
 
 class Hotel{
 	int age;
 	int member;
 	public:
+		int a;
 		string name;
 		string user,   user1;
 		string pass, pass1;
@@ -15,8 +115,103 @@ class Hotel{
 		   member=m;
 		   age=a;	
 		}
-		 void Signup(Hotel& h1);
-		 void Login(Hotel& h1);
+		friend void Signup(Hotel&);
+		
+			void Login()
+		{
+			cout<<"     * * * * * * * * * *     "<<endl;
+			cout<<"     *                 *     "<<endl;
+			cout<<"     *      LOGIN      *     "<<endl;
+			cout<<"     *                 *     "<<endl;
+			cout<<"     * * * * * * * * * *     "<<endl;
+			do{
+			if(user==user1 && pass==pass1)
+			{
+		    cout<<"Enter your username: ";
+			cin>>user;
+			cout<<"Enter your Password: ";
+			cin>>pass;
+			
+			cout<<"LOGIN SUCCESSFUL: ";
+	        }
+	        else
+	        {
+			cout<<"Incorrect username or password. Please Try again."<<endl;
+			}
+	          }while(user!=user1 || pass!=pass1);
+		}
+	
+		void PRINT()
+		{
+			int select;
+				cout<<"                    * * * * * * * * * * * * * * *                       "<<endl;
+				cout<<"                    *   WELCOME TO GIKI HOTEL!  *                       "<<endl;
+				cout<<"                    * * * * * * * * * * * * * * *                       "<<endl<<endl;	
+				
+				cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl;
+		        cout<<"     *  1. ROOMS RESERVATION   *       *       2. MEALS          *      "<<endl;
+		        cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl<<endl;
+		        
+		        cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl;
+		        cout<<"     *     3. GYMNASIUM        *       *     4. ENTERTAINMENT    *      "<<endl;
+		        cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl<<endl;
+		        
+		        cout<<"                         * * * * * * * * * * *                          "<<endl;
+		        cout<<"                         *      5. EXIT      *                          "<<endl;
+		        cout<<"                         * * * * * * * * * * *                          "<<endl<<endl;
+		        
+		       do{
+		       cout<<"PLEASE SELECT: ";
+			   cin>>select;
+			   system("cls");
+			   
+			   switch(select)
+		    {
+		    	case 1:
+		    	cout<<"                    * * * * * * * * * * * * * * * * * *                       "<<endl;
+			    cout<<"                    *   WELCOME TO ROOM RESERVATION   *                       "<<endl;
+			    cout<<"                    * * * * * * * * * * * * * * * * * *                       "<<endl<<endl;;
+		        hotelReservation();
+		        break;
+		        
+		        case 2:
+                cout<<"                    * * * * * * * * * * * * * * *                       "<<endl;
+			    cout<<"                    *     WELCOME TO MEALS      *                       "<<endl;
+			    cout<<"                    * * * * * * * * * * * * * * *                       "<<endl<<endl;
+		        pMeal();
+		        break;
+		        
+		        case 3:
+		        cout<<"                    * * * * * * * * * * * * * * *                       "<<endl;
+			    cout<<"                    *   WELCOME TO GYMNASIUM    *                       "<<endl;
+			    cout<<"                    * * * * * * * * * * * * * * *                       "<<endl<<endl;
+		        Gymnasium();
+		        break;
+		        
+		        case 4:
+		    	cout<<"                    * * * * * * * * * * * * * * *                       "<<endl;
+			    cout<<"                    *  WELCOME TO ENTERTAINMENT *                       "<<endl;
+			    cout<<"                    * * * * * * * * * * * * * * *                       "<<endl<<endl;
+		        Entertainment();
+		        break;
+		        
+		        case 5:
+		        cout<<"                    * * * * * * * * * * * * * * *                       "<<endl;
+			    cout<<"                    * EXITING THE APP, THANKYOU *                       "<<endl;
+			    cout<<"                    * * * * * * * * * * * * * * *                       "<<endl<<endl;
+			    
+		        default:
+		        {
+		        	cout<<"INVALID SELECTION. PLEASE TRY AGAIN."<<endl;
+				}
+				break;	
+			     
+			}
+			}while(select>5);
+		        
+	    }
+
+ // Define a structure for the room
 struct Room {
     int roomNumber;
     bool isReserved;
@@ -42,6 +237,11 @@ void reserveRoom(Room rooms[], int totalRooms) {
     } else {
         cout << "Enter guest name: ";
         cin >> rooms[roomNumber - 1].guestName;
+        system("cls");
+        cout<<"                    * * * * * * * * * * * * * * * * * *                       "<<endl;
+		cout<<"                    *   WELCOME TO ROOM RESERVATION   *                       "<<endl;
+	    cout<<"                    * * * * * * * * * * * * * * * * * *                       "<<endl<<endl;;
+        
         cout<<"---------------------------------------------------"<<endl;
         rooms[roomNumber - 1].isReserved = true;
         cout << "Room " << roomNumber << " has been reserved for " << rooms[roomNumber - 1].guestName << endl;
@@ -137,25 +337,22 @@ void hotelReservation() {
 		cout<<"EXITING THE APP, THANKYOU!";
 	} 
 }
-       enum Meal{
+		
+		enum Meal{
 			No_Meal=1,
 			Breakfast,
 			Lunch,
 			Dinner
-};
-
+		};
+		
 		void pMeal()
 		{
-
-			cout<<"     * * * * * * * * * * * * * *     "<<endl;
-		        cout<<"     *          MEALS          *     "<<endl;
-		        cout<<"     * * * * * * * * * * * * * *     "<<endl<<endl;
-		 
 		    int choice;
 			cout<<"1. No_Meal"<<endl;
 			cout<<"2. Breakfast"<<endl;
 			cout<<"3. Lunch"<<endl;
 			cout<<"4. Dinner"<<endl<<endl;
+			cout<<"---------------------------------------------------"<<endl;
 	do{	
 			cout<<"What you want to go for?: ";
 			cin>>choice;
@@ -178,7 +375,7 @@ void hotelReservation() {
             cout << "Invalid choice"<<endl;
     }
     }while(choice>4); 
-	        char more, q;
+	        char more;
 			int MAX_items=10;
 			int itemCount=0;
 			int quantities[MAX_items];
@@ -285,6 +482,7 @@ void hotelReservation() {
 			cout<<"3. MUTTON KARAHI"<<endl;
 			cout<<"4. CHICKEN KARAHI"<<endl;
 			cout<<"5. BIRYANI"<<endl;
+		    cout<<"---------------------------------------------------"<<endl;
 			
 			cout<<"What you like in Lunch: ";
 			cin>>choose;
@@ -363,6 +561,7 @@ void hotelReservation() {
 			cout<<"3. MUTTON KARAHI"<<endl;
 			cout<<"4. CHAPLI KABAB"<<endl;
 			cout<<"5. BBQ"<<endl;
+			cout<<"---------------------------------------------------"<<endl;
 			
 			cout<<"What you like in Dinner: ";
 			cin>>choose;
@@ -423,18 +622,31 @@ void hotelReservation() {
 		     for(int i=0; i<itemCount; ++i)
 		     {
 		     	cout<<items[i]<<" (Quantity: "<<quantities[i]<<")"<<endl;
-		     }
+			 }
+			
 		    	default:
 			cout<<"INVALID SELECTION."<<endl;
 				break;
 			
 			}
-			
-		}
+    cout<<"---------------------------------------------------"<<endl;
+	cout<<"Want to Exit or want to go to Main: "<<endl<<endl;
+	cout<<"1. Main"<<endl;
+	cout<<"2. Exit"<<endl;
+	cin>>a; 
+	
+	if(a==1)
+	{
+		PRINT();
+	}
+	else
+	{
+		cout<<"EXITING THE APP, THANKYOU!";
+	} 
 		
+	}
 		
-};
-void Gymnasium()
+		void Gymnasium()
 		{
 			int n;		
 			cout<<"     * * * * * * * * * * * * * *       * * * * * * * * * * * * * *      "<<endl;
@@ -492,8 +704,88 @@ void Gymnasium()
 	} 
 			
 	}
-
-void Hotel::Signup(Hotel &h) {
+		
+		enum Fun{
+			Movies=1,
+			Videogame,
+			Gokarting,
+			Paintball
+		};    	
+	void Entertainment() {
+		
+		int option;
+			cout<<"1. Movie"<<endl;
+			cout<<"2. Video Games"<<endl;
+			cout<<"3. Go Karting"<<endl;
+			cout<<"4. Paint Ball"<<endl<<endl;
+	do{	
+			cout<<"What you want to go for?: ";
+			cin>>option;
+			Fun f;
+			
+			 switch (option) 
+			 {
+        case 1:
+            f=Movies;
+            break;
+        case 2:
+            f=Videogame;
+            break;
+         case 3:
+            f=Gokarting;
+            break;
+         case 4:
+            f=Paintball;
+            break;
+        default:
+            cout << "Invalid choice"<<endl;
+    }
+    }while(option>4);
+    
+    Movie movie;
+    VideoGame game;
+    GoKarting karting;
+    PaintBall paintball;
+    
+    switch(option){
+    case Movies:
+        movie.inputDetails();
+        cout<<"Entertainment options: "<<endl;
+        movie.display(); 
+	break;
+	
+	case Videogame:	 
+        game.inputDetails();
+        game.display();
+    break;
+	
+	case Gokarting: 
+        karting.inputDetails();
+        karting.display();
+    break;
+	
+	case Paintball:
+        paintball.inputDetails();
+        paintball.display();
+    break;
+    } 
+	cout<<"Want to Exit or want to go to Main: "<<endl<<endl;
+	cout<<"1. Main"<<endl;
+	cout<<"2. Exit"<<endl;
+	cin>>a; 
+	
+	if(a==1)
+	{
+		PRINT();
+	}
+	else
+	{
+		cout<<"EXITING THE APP, THANKYOU!";
+	} 
+    }		
+};
+		
+		void Signup(Hotel &h) {
     cout << "     * * * * * * * * * *     " << endl;
     cout << "     *                 *     " << endl;
     cout << "     *     SIGNUP      *     " << endl;
@@ -508,54 +800,29 @@ void Hotel::Signup(Hotel &h) {
     cin >> h.mail;
     cout << "Enter your age: ";
     cin >> h.age;
-    cout << "Create your password: ";
-    cin >> h.pass;
+    
     do {
+    	cout << "Create your password: ";
+    cin >> h.pass;
         cout << "Confirm your password: ";
         cin >> h.pass1;
 
-        if (h.pass == h.pass1) {
-            cout << "SIGN UP SUCCESSFUL" << endl;
-            //h.Login(h);
-            break; // Exit the loop after successful signup
-        } else {
-            cout << "Passwords do not match. Please try again." << endl;
-        }
-    } while (h.pass != h.pass1); // Loop until a successful signup
-}
-
-void Hotel::Login(Hotel& h1)
+        if (h.pass != h.pass1) 
 		{
-			
-			cout<<"     * * * * * * * * * *     "<<endl;
-			cout<<"     *                 *     "<<endl;
-			cout<<"     *      LOGIN      *     "<<endl;
-			cout<<"     *                 *     "<<endl;
-			cout<<"     * * * * * * * * * *     "<<endl;
-			do{
-			if(h1.user==h1.user1 && h1.pass==h1.pass1)
-			{
-		    cout<<"Enter your username: ";
-			cin>>h1.user;
-			cout<<"Enter your Password: ";
-			cin>>h1.pass;
-			
-			cout<<"LOGIN SUCCESSFUL: ";
-	        }
-	       
-		    else
-	        {
-			cout<<"Incorrect username or password. Please Try again."<<endl;
-			}
-	          }while(h1.user!=h1.user1 || h1.pass!=h1.pass1);
+            cout << "Passwords do not match. Please try again." << endl;
 		}
+    } while (h.pass != h.pass1); // Loop until a successful signup
+    
+    cout<<"  SIGN-UP SUCCESSFUL!  "<<endl;
+    h.Login();
+}
 
 int main()
 {
 	Hotel h1;
-	h1.Signup(h1);
-	h1.Login(h1);
-	
+    h1.PRINT();
+    //Signup(h1);
+
 	
 	return 0;
 }
